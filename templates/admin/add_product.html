@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Add New Product</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    html, body { height: 100%; }
+    .content-wrapper {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+    .main-content {
+      flex: 1;
+    }
+  </style>
+</head>
+<body>
+<div class="content-wrapper">
+  <nav class="navbar navbar-dark bg-dark">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="/admin/dashboard">🛍️ Admin Dashboard</a>
+      <div class="d-flex">
+        <a href="/admin/products" class="btn btn-outline-light me-2">Products</a>
+        <a href="/admin/users" class="btn btn-outline-light me-2">Users</a>
+        <a href="/admin/orders" class="btn btn-outline-light me-2">Orders</a>
+        <a href="/admin/cloth_types" class="btn btn-outline-light me-2">Cloth Types</a>
+        <a href="/logout" class="btn btn-light">Logout</a>
+      </div>
+    </div>
+  </nav>
+
+  <div class="container py-5 main-content">
+    <h2 class="mb-4">Add New Product</h2>
+    <form action="/admin/add_product" method="POST" enctype="multipart/form-data">
+      <div class="mb-3">
+        <label class="form-label">Product Name</label>
+        <input type="text" class="form-control" name="name" required>
+      </div>
+      <div class="mb-3">
+        <label class="form-label">Description</label>
+        <textarea class="form-control" name="description" rows="3"></textarea>
+      </div>
+      <div class="mb-3">
+        <label class="form-label">Color</label>
+        <input type="text" class="form-control" name="color">
+      </div>
+      <div class="mb-3">
+        <label class="form-label">Price (₹)</label>
+        <input type="number" step="0.01" class="form-control" name="price" required>
+      </div>
+      <div class="mb-3">
+        <label class="form-label">Cloth Type</label>
+        <select name="cloth_type_id" class="form-control" required>
+          {% for t in cloth_types %}
+            <option value="{{ t.id }}">{{ t.type_name }}</option>
+          {% endfor %}
+        </select>
+      </div>
+      <div class="mb-3">
+        <label class="form-label">Product Image</label>
+        <input type="file" class="form-control" name="image">
+      </div>
+      <div class="mb-3">
+        <label class="form-label">Stock per Size</label>
+        <div class="row">
+          {% for size in ['S', 'M', 'L', 'XL'] %}
+          <div class="col-md-3">
+            <label>{{ size }}</label>
+            <input type="number" class="form-control" name="size_{{ size }}" value="0" min="0">
+          </div>
+          {% endfor %}
+        </div>
+      </div>
+      <button type="submit" class="btn btn-success">Add Product</button>
+    </form>
+  </div>
+
+  <footer class="text-center text-white py-4 bg-dark mt-auto">
+    &copy; 2024 Clothing Store. All rights reserved.
+  </footer>
+</div>
+</body>
+</html>
