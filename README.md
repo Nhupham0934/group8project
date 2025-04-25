@@ -1,10 +1,10 @@
-# ⛽ ICONICA – Online clothing store
+#  ICONICA – Online clothing store
 
 ICONICA is a full-stack web application that allows users to browse, purchase, and review clothing items. It also provides an admin interface to manage products, users, and orders efficiently
 
 ---
 
-## 🧠 Project Overview
+## Project Overview
 
 This system provides a simple and interactive shopping experience for users to:
 - Register and log in
